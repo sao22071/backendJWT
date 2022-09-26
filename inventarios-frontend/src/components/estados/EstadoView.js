@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { getEstadoEquipo } from "../../services/estadoEquipoService";
+import { ListaNew } from "../ListNew";
 import { ListTable } from "../ListTable";
-
-import { EstadoNew } from "./EstadoNew";
 
 export const EstadoView = () => {
   const [estadoEquipos, setEstadoEquipos] = useState([]);
@@ -37,7 +36,7 @@ export const EstadoView = () => {
         <div className="card-body">
           <div className="row">
             <div className="col">
-              <EstadoNew listarEstadoEquipos={listarEstadoEquipos} />
+              <ListaNew list={listarEstadoEquipos} />
               <div className="row mt-4">
                 <table className="table table-hover table-styles-users">
                   <thead>

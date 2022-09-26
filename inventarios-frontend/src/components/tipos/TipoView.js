@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { getTipoEquipo } from "../../services/tipoEquipoService";
+import { ListaNew } from "../ListNew";
 import { ListTable } from "../ListTable";
-import { TipoNew } from "./TipoNew";
 
 export const TipoView = () => {
   const [tipos, setTipos] = useState([]);
@@ -36,7 +36,7 @@ export const TipoView = () => {
         <div className="card-body">
           <div className="row">
             <div className="col">
-              <TipoNew listarTipos={listarTipos} />
+              <ListaNew list={listarTipos} />
               <div className="row mt-4">
                 <table className="table table-hover table-styles-users">
                   <thead>
@@ -48,12 +48,12 @@ export const TipoView = () => {
                       <th scope="col">Fecha Actualizacion</th>
                     </tr>
                   </thead>
-                  {tipos.map((tipos, index) => {
+                  {tipos.map((tipo, index) => {
                     return (
-                      <tbody key={tipos._id}>
+                      <tbody key={tipo._id}>
                         <ListTable
-                          to={`/tipos/edit/${tipos._id}`}
-                          {...{ ...tipos }}
+                          to={`/tipos/edit/${tipo._id}`}
+                          {...{ ...tipo }}
                           i={index}
                         />
                       </tbody>

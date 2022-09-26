@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { crearMarcas } from "../../services/marcaService";
+import { crearEstadoEquipo } from "../../services/estadoEquipoService";
 
-export const MarcaNew = ({ listarMarcas }) => {
+export const ListaNew = ({ list }) => {
   const [valoresForm, setValoresForm] = useState({});
 
   const { nombre = "", estado = "" } = valoresForm;
@@ -11,12 +11,14 @@ export const MarcaNew = ({ listarMarcas }) => {
     const { name, value } = target;
     setValoresForm({ ...valoresForm, [name]: value });
   };
+
   const limpiarValores = () => {
     setValoresForm({ nombre: "", estado: "" });
   };
+
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    const marcas = {
+    const estadoValores = {
       nombre,
       estado,
     };
@@ -26,9 +28,9 @@ export const MarcaNew = ({ listarMarcas }) => {
         text: "Cargando...",
       });
       Swal.showLoading();
-      const { data } = await crearMarcas(marcas);
+      const { data } = await crearEstadoEquipo(estadoValores);
       Swal.close();
-      listarMarcas();
+      list();
       limpiarValores();
     } catch (error) {
       console.log(error);
@@ -44,7 +46,7 @@ export const MarcaNew = ({ listarMarcas }) => {
   };
 
   useEffect(() => {
-    listarMarcas();
+    list();
   }, []);
 
   return (

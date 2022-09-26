@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { getMarcas } from "../../services/marcaService";
+import { ListaNew } from "../ListNew";
 import { ListTable } from "../ListTable";
-import { MarcaNew } from "./MarcaNew";
 
 export const MarcaView = () => {
   const [marcas, setMarcas] = useState([]);
@@ -36,7 +36,7 @@ export const MarcaView = () => {
         <div className="card-body">
           <div className="row">
             <div className="col">
-              <MarcaNew listarMarcas={listarMarcas} />
+              <ListaNew list={listarMarcas} />
               <div className="row mt-4">
                 <table className="table table-hover table-styles-users">
                   <thead>
