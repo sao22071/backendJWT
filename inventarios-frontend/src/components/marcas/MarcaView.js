@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { getMarcas } from "../../services/marcaService";
-import { MarcaLista } from "./MarcaLista";
+import { ListTable } from "../ListTable";
 import { MarcaNew } from "./MarcaNew";
 
 export const MarcaView = () => {
@@ -51,7 +51,11 @@ export const MarcaView = () => {
                   {marcas.map((marca, index) => {
                     return (
                       <tbody key={marca._id}>
-                        <MarcaLista marca={marca} i={index} />
+                        <ListTable
+                          to={`/marcas/edit/${marca._id}`}
+                          {...{ ...marca }}
+                          i={index}
+                        />
                       </tbody>
                     );
                   })}

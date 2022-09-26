@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { getTipoEquipo } from "../../services/tipoEquipoService";
-import { TipoLista } from "./TipoLista";
+import { ListTable } from "../ListTable";
 import { TipoNew } from "./TipoNew";
 
 export const TipoView = () => {
@@ -51,7 +51,11 @@ export const TipoView = () => {
                   {tipos.map((tipos, index) => {
                     return (
                       <tbody key={tipos._id}>
-                        <TipoLista tipos={tipos} i={index} />
+                        <ListTable
+                          to={`/tipos/edit/${tipos._id}`}
+                          {...{ ...tipos }}
+                          i={index}
+                        />
                       </tbody>
                     );
                   })}

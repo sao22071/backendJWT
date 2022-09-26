@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { getEstadoEquipo } from "../../services/estadoEquipoService";
+import { ListTable } from "../ListTable";
 
-import { EstadoLista } from "./EstadoLista";
 import { EstadoNew } from "./EstadoNew";
 
 export const EstadoView = () => {
@@ -52,7 +52,11 @@ export const EstadoView = () => {
                   {estadoEquipos.map((estadoEquipo, index) => {
                     return (
                       <tbody key={estadoEquipo._id}>
-                        <EstadoLista estadoEquipo={estadoEquipo} i={index} />
+                        <ListTable
+                          to={`/estados/edit/${estadoEquipo._id}`}
+                          {...{ ...estadoEquipo }}
+                          i={index}
+                        />
                       </tbody>
                     );
                   })}
