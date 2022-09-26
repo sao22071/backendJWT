@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { getMarcas } from "../../services/marcaService";
+import { crearMarcas, getMarcas } from "../../services/marcaService";
 import { ListaNew } from "../ListNew";
 import { ListTable } from "../ListTable";
 
@@ -36,7 +36,7 @@ export const MarcaView = () => {
         <div className="card-body">
           <div className="row">
             <div className="col">
-              <ListaNew list={listarMarcas} />
+              <ListaNew list={() => listarMarcas} onSubmit={crearMarcas} />
               <div className="row mt-4">
                 <table className="table table-hover table-styles-users">
                   <thead>

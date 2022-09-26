@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { getTipoEquipo } from "../../services/tipoEquipoService";
+import {
+  crearTipoEquipo,
+  getTipoEquipo,
+} from "../../services/tipoEquipoService";
 import { ListaNew } from "../ListNew";
 import { ListTable } from "../ListTable";
 
@@ -36,7 +39,7 @@ export const TipoView = () => {
         <div className="card-body">
           <div className="row">
             <div className="col">
-              <ListaNew list={listarTipos} />
+              <ListaNew list={listarTipos} onSubmit={crearTipoEquipo} />
               <div className="row mt-4">
                 <table className="table table-hover table-styles-users">
                   <thead>

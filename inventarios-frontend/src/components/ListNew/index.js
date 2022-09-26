@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Swal from "sweetalert2";
-import { crearEstadoEquipo } from "../../services/estadoEquipoService";
 
-export const ListaNew = ({ list }) => {
+export const ListaNew = ({ list, onSubmit }) => {
   const [valoresForm, setValoresForm] = useState({});
 
   const { nombre = "", estado = "" } = valoresForm;
@@ -28,7 +27,7 @@ export const ListaNew = ({ list }) => {
         text: "Cargando...",
       });
       Swal.showLoading();
-      const { data } = await crearEstadoEquipo(estadoValores);
+      const { data } = await onSubmit(estadoValores);
       Swal.close();
       list();
       limpiarValores();
