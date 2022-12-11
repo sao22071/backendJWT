@@ -22,7 +22,7 @@ router.post("/", validarJwt, esAdmin, async function (req, res) {
   }
 });
 
-router.get("/", validarJwt, async function (req, res) {
+router.get("/", validarJwt, esAdmin, async function (req, res) {
   try {
     const estados = await EstadoEquipo.find();
     res.send(estados);
@@ -31,7 +31,7 @@ router.get("/", validarJwt, async function (req, res) {
     res.send("ocurrió un error");
   }
 });
-router.put("/:estadoEquipoId", validarJwt, async function (req, res) {
+router.put("/:estadoEquipoId", validarJwt, esAdmin, async function (req, res) {
   try {
     let estadoEquipo = await EstadoEquipo.findById(req.params.estadoEquipoId);
 
@@ -52,7 +52,7 @@ router.put("/:estadoEquipoId", validarJwt, async function (req, res) {
   }
 });
 
-router.get("/:estadoEquipoId", validarJwt, async function (req, res) {
+router.get("/:estadoEquipoId", validarJwt, esAdmin, async function (req, res) {
   try {
     const estadoEquipo = await EstadoEquipo.findById(req.params.estadoEquipoId);
     res.send(estadoEquipo);

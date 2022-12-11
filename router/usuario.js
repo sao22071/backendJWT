@@ -32,7 +32,7 @@ router.post("/", validarJwt, esAdmin, async function (req, res) {
   }
 });
 
-router.get("/", async function (req, res) {
+router.get("/", validarJwt, esAdmin, async function (req, res) {
   try {
     const usuarios = await Usuario.find();
     res.send(usuarios);
@@ -42,7 +42,7 @@ router.get("/", async function (req, res) {
   }
 });
 
-router.put("/:usuarioId", async function (req, res) {
+router.put("/:usuarioId", validarJwt, esAdmin, async function (req, res) {
   try {
     console.log("objeto recibido", req.body, req.params);
 
@@ -78,7 +78,7 @@ router.put("/:usuarioId", async function (req, res) {
   }
 });
 
-router.get("/:usuarioId", async function (req, res) {
+router.get("/:usuarioId", validarJwt, esAdmin, async function (req, res) {
   try {
     const usuario = await Usuario.findById(req.params.usuarioId);
     res.send(usuario);

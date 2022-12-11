@@ -22,7 +22,7 @@ router.post("/", validarJwt, esAdmin, async function (req, res) {
   }
 });
 
-router.get("/", validarJwt, async function (req, res) {
+router.get("/", validarJwt, esAdmin, async function (req, res) {
   try {
     const marcas = await Marca.find();
     res.send(marcas);
@@ -52,7 +52,7 @@ router.put("/:marcaId", validarJwt, async function (req, res) {
   }
 });
 
-router.get("/:marcaId", validarJwt, async function (req, res) {
+router.get("/:marcaId", validarJwt, esAdmin, async function (req, res) {
   try {
     const marca = await Marca.findById(req.params.marcaId);
     res.send(marca);
@@ -65,7 +65,7 @@ router.get("/:marcaId", validarJwt, async function (req, res) {
   }
 });
 
-router.delete("/:marcaId", validarJwt, async function (req, res) {
+router.delete("/:marcaId", validarJwt, esAdmin, async function (req, res) {
   try {
     const id = req.params.marcaId;
     const marca = await Marca.findById(id);

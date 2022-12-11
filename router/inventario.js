@@ -73,7 +73,7 @@ router.get("/", validarJwt, async function (req, res) {
   }
 });
 
-router.put("/:inventarioId", validarJwt, async function (req, res) {
+router.put("/:inventarioId", validarJwt, esAdmin, async function (req, res) {
   try {
     console.log("objeto recibido", req.body, req.params);
 
@@ -114,7 +114,7 @@ router.put("/:inventarioId", validarJwt, async function (req, res) {
   }
 });
 
-router.get("/:inventarioId", validarJwt, async function (req, res) {
+router.get("/:inventarioId", validarJwt, esAdmin, async function (req, res) {
   try {
     const inventario = await Inventario.findById(req.params.inventarioId);
     res.send(inventario);
