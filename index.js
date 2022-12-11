@@ -21,6 +21,9 @@ app.use("/marca", require("./router/marca"));
 app.use("/tipo-equipo", require("./router/tipoEquipo"));
 app.use("/inventario", require("./router/inventario"));
 
+//MODULO AUTENTICACIÓN Y AUTORIZACION
+app.use("/auth", require("./router/auth"));
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`);
 });

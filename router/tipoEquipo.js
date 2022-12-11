@@ -1,8 +1,10 @@
 const { Router } = require("express");
+const validarJwt = require("../middlewares/validarJWT");
+const { esAdmin } = require("../middlewares/validarRol");
 const TipoEquipo = require("../models/TipoEquipo");
 const router = Router();
 
-router.post("/", async function (req, res) {
+router.post("/", validarJwt, esAdmin, async function (req, res) {
   try {
     let tipoEquipo = new TipoEquipo();
 
@@ -20,7 +22,7 @@ router.post("/", async function (req, res) {
   }
 });
 
-router.get("/", async function (req, res) {
+router.get("/", validarJwt, async function (req, res) {
   try {
     const tipoEquipo = await TipoEquipo.find();
     res.send(tipoEquipo);
@@ -30,7 +32,7 @@ router.get("/", async function (req, res) {
   }
 });
 
-router.put("/:tipoEquipoId", async function (req, res) {
+router.put("/:tipoEquipoId", validarJwt, async function (req, res) {
   try {
     let tipoEquipo = await TipoEquipo.findById(req.params.tipoEquipoId);
 
@@ -51,7 +53,7 @@ router.put("/:tipoEquipoId", async function (req, res) {
   }
 });
 
-router.get("/:tipoEquipoId", async function (req, res) {
+router.get("/:tipoEquipoId", validarJwt, async function (req, res) {
   try {
     const tipoEquipo = await TipoEquipo.findById(req.params.tipoEquipoId);
     res.send(tipoEquipo);

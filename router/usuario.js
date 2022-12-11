@@ -1,9 +1,10 @@
 const { Router } = require("express");
+const validarJwt = require("../middlewares/validarJWT");
+const { esAdmin } = require("../middlewares/validarRol");
+const Usuario = require("../models/Usuario");
 const router = Router();
 
-const Usuario = require("../models/Usuario");
-
-router.post("/", async function (req, res) {
+router.post("/", validarJwt, esAdmin, async function (req, res) {
   try {
     console.log(req.body);
 
@@ -17,6 +18,8 @@ router.post("/", async function (req, res) {
     usuario.nombre = req.body.nombre;
     usuario.email = req.body.email;
     usuario.estado = req.body.estado;
+    usuario.rol = req.body.rol;
+    usuario.password = req.body.password;
     usuario.fechaCreacion = new Date();
     usuario.fechaActualizacion = new Date();
 
@@ -62,6 +65,8 @@ router.put("/:usuarioId", async function (req, res) {
     usuario.nombre = req.body.nombre;
     usuario.email = req.body.email;
     usuario.estado = req.body.estado;
+    usuario.rol = req.body.rol;
+    usuario.password = req.body.password;
     usuario.fechaActualizacion = new Date();
 
     usuario = await usuario.save();
